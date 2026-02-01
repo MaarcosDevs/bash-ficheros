@@ -1,17 +1,23 @@
 #!/bin/bash
+
 contadorWindows=0
 contadorLinux=0
+sumaWindows=0
+sumaLinux=0
+
 while read linea
 do
-    div=linea
-    if echo "$linea" | grep -q "Windows"
-    then
-        echo "$linea es Windows"
-        contadorWindows=$((contadorWindows+1))
+    col2=$(echo "$linea" | awk '{print $2}')
+    col3=$(echo "$linea" | awk '{print $3}')
+
+    if [ "$col2" = "Windows" ]; then
+        contadorWindows=$((contadorWindows + 1))
+        sumaWindows=$((sumaWindows + $col3))
     else
-        echo "$linea es Linux"
-        contadorLinux=$((contadorLinux+1)) 
+        contadorLinux=$((contadorLinux + 1))
+        sumaLinux=$((sumaLinux + $col3))
     fi
-    echo "Tenemos $contadorWindows Usan Windows"
-    echo "Tenemos $contadorLinux Usan Linux"
 done < listado.txt
+
+echo "Tenemos $contadorWindows usan Windows. Con $sumaWindows"
+echo "Tenemos $contadorLinux usan Linux. Con $sumaLinux"

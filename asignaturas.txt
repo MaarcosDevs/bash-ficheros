@@ -1,0 +1,6 @@
+ana	        Si		    4
+matilde	    PR		    5
+marcos	    Mek		    6
+ana	        Si		    3
+pepe	    Si		    5
+
